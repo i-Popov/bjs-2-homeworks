@@ -1,30 +1,46 @@
 function solveEquation(a, b, c) {
-    let d = [(parseInt(Math.pow(b, 2) - (4 * a * c)))];
-    d = Number(d);
-
-    let arr = [];
+    const discriminant = Number([(parseInt(Math.pow(b, 2) - (4 * a * c)))]);
 
     let x = -b / (2 * a);
-    let x1 = (-b + Math.sqrt(d)) / (2 * a);
-    let x2 = (-b - Math.sqrt(d)) / (2 * a);
+    let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-    if (d > 0) {
+    let arr;
+
+    if (discriminant > 0) {
         arr = [x1, x2];
-        console.log(arr);
-    } else if (d === 0) {
+    } else if (discriminant === 0) {
         arr = [x];
-        console.log(arr);
     } else {
         arr = [];
-        console.log(arr);
     }
     return arr; // array
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
 
+    let percentTest = parseInt(percent,10)
+    if (Number.isNaN(percentTest)) {
+        return `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`
+    }
+
+    let contributionTest = parseInt(contribution,10)
+    if (Number.isNaN(contributionTest)) {
+        return `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`
+    }
+
+    let amountTest = parseInt(amount,10)
+    if (Number.isNaN(amountTest)) {
+        return `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`
+    }
+
+    if (date.getTime() < Date.now()) {
+        return `Параметр "Дата" введен неверно. Дата должна быть не ранее сегодняшнего дня))`
+    }
+
+
   let dateMilliseconds = date.getTime() - Date.now();
-  let n = Math.round(dateMilliseconds / 2592000000);
+  let n = Math.round(dateMilliseconds / 2631600000);
     console.log(n);
 
     let p = percent / 12 / 100;
@@ -35,6 +51,3 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     let totalAmount = Math.round((paymentMonth * n) * 100) / 100;
   return totalAmount;
 }
-
-//Не забывайте, что вы должны работать с числами: если параметр функции будет строкой, то попытайтесь преобразовать в число.
-// Во всех остальных случаях возвращайте строку: `“Параметр <название параметра> содержит неправильное значение <значение параметра>”`.
