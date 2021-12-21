@@ -5,15 +5,14 @@ function solveEquation(a, b, c) {
     let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
     let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-    let arr;
+    let arr = [];
 
     if (discriminant > 0) {
         arr = [x1, x2];
     } else if (discriminant === 0) {
         arr = [x];
-    } else {
-        arr = [];
     }
+
     return arr; // array
 }
 
