@@ -9,10 +9,9 @@ function parseCount(x) {
 
 function validateCount(y) {
     try {
-        let parsed = parseCount(y);
-        return parsed;
+        return parseCount(y);
     } catch (err) {
-        return Error("Невалидное значение");
+        return err;
     }
 }
 
@@ -27,12 +26,12 @@ class Triangle {
         this.c = c;
     }
 
-    getPerimeter(perimeter) {
-        return perimeter = this.a + this.b + this.c;
+    getPerimeter() {
+        return this.a + this.b + this.c;
     }
 
     getArea() {
-        let p = (this.a + this.b + this.c) / 2;
+        let p = this.getPerimeter() / 2;
         let area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
         return Number(area.toFixed(3));
     }
